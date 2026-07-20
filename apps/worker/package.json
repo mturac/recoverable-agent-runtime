@@ -1,0 +1,26 @@
+{
+  "name": "@rar/worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "start": "node dist/main.js",
+    "dev": "tsx src/main.ts"
+  },
+  "dependencies": {
+    "@rar/db": "0.1.0",
+    "@rar/domain": "0.1.0",
+    "@rar/o11y": "0.1.0",
+    "@rar/providers": "0.1.0",
+    "@rar/testkit": "0.1.0",
+    "@temporalio/activity": "^1.11.8",
+    "@temporalio/client": "^1.11.8",
+    "@temporalio/worker": "^1.11.8",
+    "@temporalio/workflow": "^1.11.8",
+    "drizzle-orm": "^0.45.2",
+    "postgres": "^3.4.9"
+  }
+}

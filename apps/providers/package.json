@@ -1,0 +1,56 @@
+{
+  "name": "@rar/providers",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/main.js",
+  "exports": {
+    ".": {
+      "types": "./dist/main.d.ts",
+      "import": "./dist/main.js",
+      "require": "./dist/main.js",
+      "default": "./dist/main.js"
+    },
+    "./payment": {
+      "types": "./dist/payment.d.ts",
+      "import": "./dist/payment.js",
+      "require": "./dist/payment.js",
+      "default": "./dist/payment.js"
+    },
+    "./inventory": {
+      "types": "./dist/inventory.d.ts",
+      "import": "./dist/inventory.js",
+      "require": "./dist/inventory.js",
+      "default": "./dist/inventory.js"
+    },
+    "./email": {
+      "types": "./dist/email.d.ts",
+      "import": "./dist/email.js",
+      "require": "./dist/email.js",
+      "default": "./dist/email.js"
+    },
+    "./crm": {
+      "types": "./dist/crm.d.ts",
+      "import": "./dist/crm.js",
+      "require": "./dist/crm.js",
+      "default": "./dist/crm.js"
+    },
+    "./db": {
+      "types": "./dist/db.d.ts",
+      "import": "./dist/db.js",
+      "require": "./dist/db.js",
+      "default": "./dist/db.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "start": "node dist/main.js",
+    "dev": "tsx src/main.ts"
+  },
+  "dependencies": {
+    "fastify": "^5.3.3",
+    "postgres": "^3.4.9"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "name": "@rar/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run --passWithNoTests",
+    "start": "node dist/main.js",
+    "dev": "tsx src/main.ts"
+  },
+  "dependencies": {
+    "@fastify/rate-limit": "^10.2.2",
+    "@rar/acp": "0.1.0",
+    "@rar/db": "0.1.0",
+    "@rar/domain": "0.1.0",
+    "@rar/evidence": "0.1.0",
+    "@rar/o11y": "0.1.0",
+    "drizzle-orm": "^0.45.2",
+    "fastify": "^5.3.3"
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "id": "evp_15984d1a-c5ac-4ecb-a009-f6f5f997f89a",
+  "workflowId": "wf_11f381ed-7023-4bd6-b4f2-86674038b999",
+  "createdAt": "2026-07-20T16:59:23.229Z",
+  "chain": [
+    {
+      "seq": 1,
+      "kind": "session",
+      "payload": {
+        "sessionId": "sess_8fa8df88-edfe-4abd-bdfb-60316b7d666c",
+        "resume": {
+          "sessionId": "sess_8fa8df88-edfe-4abd-bdfb-60316b7d666c",
+          "status": "resumed",
+          "workflowId": null,
+          "grantsConsumed": false,
+          "effectsRetried": false
+        }
+      },
+      "prevHash": "genesis",
+      "hash": "985700b93332d4fb1e7195d8c23b428b1f60ac721cb23e6444c3039af1d06dcd"
+    },
+    {
+      "seq": 2,
+      "kind": "crash",
+      "payload": {
+        "boundary": "after_external_commit_before_response",
+        "step": "capture_payment",
+        "idempotencyKey": "idem:wf_11f381ed-7023-4bd6-b4f2-86674038b999:op_capture_payment_3be183ec-b6f1-46b7-b941-f9bed1bdeeca"
+      },
+      "prevHash": "985700b93332d4fb1e7195d8c23b428b1f60ac721cb23e6444c3039af1d06dcd",
+      "hash": "ce93f904f1701a866122dcbc2e070cd706237ba03744a90bf75951ce1820bfe2"
+    },
+    {
+      "seq": 3,
+      "kind": "reconciliation",
+      "payload": {
+        "classification": "confirmed_success",
+        "decision": "continue",
+        "paymentId": "pay_d2a3d0e5-9822-47e4-aa65-7277246f9f78"
+      },
+      "prevHash": "ce93f904f1701a866122dcbc2e070cd706237ba03744a90bf75951ce1820bfe2",
+      "hash": "bdb75d63460b13af7bce5d085b4a1c2fc7e275c037ce2b1f17e6496856cab759"
+    },
+    {
+      "seq": 4,
+      "kind": "receipt",
+      "payload": {
+        "receiptId": "rcpt_recovered_bc0413ab-209b-4405-9491-97336f1378c8"
+      },
+      "prevHash": "bdb75d63460b13af7bce5d085b4a1c2fc7e275c037ce2b1f17e6496856cab759",
+      "hash": "9ae6cf4f5d56452e99e19bbf2fe926af8a93a281d8f1973f18c3586040bb3e9d"
+    },
+    {
+      "seq": 5,
+      "kind": "verification",
+      "payload": {
+        "paymentCount": 1,
+        "sessionDidNotRetry": true,
+        "invariant": "one_logical_payment"
+      },
+      "prevHash": "9ae6cf4f5d56452e99e19bbf2fe926af8a93a281d8f1973f18c3586040bb3e9d",
+      "hash": "9c9e24a83903085431e9f50cc0226e3db8b5846dd339f6417ff352bf1db0f5a0"
+    }
+  ],
+  "chainHeadHash": "9c9e24a83903085431e9f50cc0226e3db8b5846dd339f6417ff352bf1db0f5a0",
+  "hmacSignature": "103519ce825ebe18347ba9a2c0e2226ff5a68ef961ec8ab1555d27b3a1a5f84d"
+}

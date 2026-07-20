@@ -1,0 +1,21 @@
+node_modules/
+dist/
+build/
+coverage/
+.env
+.env.local
+*.log
+.DS_Store
+.turbo/
+.vite/
+*.tsbuildinfo
+.temporal/
+data/
+tmp/
+
+# Private planning / agent harness — never publish
+.izon-consule/
+goal/
+.ai/
+.turac/
+*.local.md

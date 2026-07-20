@@ -1,0 +1,71 @@
+name: ci
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+
+jobs:
+  ship-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: rar
+          POSTGRES_PASSWORD: rar
+          POSTGRES_DB: rar
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U rar -d rar"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgres://rar:rar@localhost:5432/rar
+      EVIDENCE_HMAC_SECRET: ci-evidence-hmac-secret-not-for-prod-32
+      API_BEARER_TOKEN: ci-api-token
+      TEMPORAL_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install
+        run: npm ci
+
+      - name: Compose config
+        run: docker compose config -q
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build
+        run: npm run build
+
+      - name: Migrate + seed
+        run: |
+          npm run migrate
+          npm run seed
+
+      - name: Unit + integration tests
+        run: npm test
+
+      - name: Mandatory payment-crash demo
+        run: npm run demo:payment-crash
+
+      - name: Evidence artifact present
+        run: test -f docs/examples/evidence-payment-crash.json
+
+      - name: Upload evidence packet
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: evidence-payment-crash
+          path: docs/examples/evidence-payment-crash.json
+          if-no-files-found: ignore

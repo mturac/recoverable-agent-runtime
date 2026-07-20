@@ -1,0 +1,39 @@
+{
+  "name": "recoverable-agent-runtime",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Recoverable Agent Runtime — durable execution and recovery reference platform",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=22 <27"
+  },
+  "scripts": {
+    "build:packages": "npm run build -w @rar/domain && npm run build -w @rar/db && npm run build -w @rar/acp && npm run build -w @rar/evidence && npm run build -w @rar/o11y && npm run build -w @rar/testkit",
+    "build:apps": "npm run build -w @rar/api && npm run build -w @rar/worker && npm run build -w @rar/providers && npm run build -w @rar/dashboard",
+    "build": "npm run build:packages && npm run build:apps",
+    "typecheck": "npm run build:packages && npm run typecheck --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "migrate": "npm run migrate -w @rar/db",
+    "seed": "npm run seed -w @rar/db",
+    "demo:payment-crash": "tsx --tsconfig tsconfig.base.json scripts/demo-payment-crash.ts",
+    "lint": "npm run typecheck",
+    "verify:ship": "npm run typecheck && npm run build && npm run migrate && npm run seed && npm test && npm run demo:payment-crash"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3",
+    "vitest": "^3.1.4",
+    "@types/node": "^22.15.21"
+  },
+  "dependencies": {
+    "@rar/acp": "0.1.0",
+    "@rar/db": "0.1.0",
+    "@rar/domain": "0.1.0",
+    "@rar/evidence": "0.1.0",
+    "@rar/providers": "0.1.0",
+    "@rar/testkit": "0.1.0"
+  }
+}
